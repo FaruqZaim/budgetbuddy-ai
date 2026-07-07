@@ -2,237 +2,469 @@
 <html>
 <head>
   <title>BudgetBuddy AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f8f6;
-      color: #222;
-    }
-
-    header {
-      background: #1f7a5c;
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
+      background: #f6fff9;
+      color: #1d1d1d;
     }
 
     nav {
-      background: #145c45;
-      text-align: center;
-      padding: 15px;
       position: sticky;
       top: 0;
+      z-index: 100;
+      background: rgba(15, 85, 63, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 16px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h2 {
+      color: white;
+      margin: 0;
+      font-size: 22px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin: 10px;
+      margin-left: 18px;
       font-weight: bold;
+      font-size: 14px;
     }
 
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 70px 8%;
+      background: linear-gradient(135deg, #0f5c45, #28a876);
+      color: white;
     }
 
-    h2 {
-      color: #1f7a5c;
+    .hero-text {
+      max-width: 560px;
     }
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin: 15px 0;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    .hero h1 {
+      font-size: 58px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
     .button {
       display: inline-block;
-      background: #f4b942;
-      color: #222;
-      padding: 14px 22px;
-      border-radius: 8px;
+      background: #ffd166;
+      color: #1d1d1d;
+      padding: 15px 24px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 15px;
+      margin-top: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
-    .flow {
-      font-size: 20px;
-      font-weight: bold;
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .phone {
+      background: #111;
+      width: 280px;
+      height: 520px;
+      border-radius: 35px;
+      padding: 18px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+    }
+
+    .phone-screen {
+      background: #e8f5ef;
+      height: 100%;
+      border-radius: 25px;
+      padding: 18px;
+      color: #222;
+    }
+
+    .chat {
+      background: white;
+      padding: 12px;
+      border-radius: 14px;
+      margin: 12px 0;
+      font-size: 14px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    .chat.user {
+      background: #d1fae5;
+      margin-left: 30px;
+    }
+
+    section {
+      padding: 70px 8%;
+    }
+
+    .section-title {
       text-align: center;
-      color: #1f7a5c;
+      max-width: 750px;
+      margin: auto;
+      margin-bottom: 40px;
     }
 
-    img {
+    .section-title h2 {
+      font-size: 38px;
+      color: #0f5c45;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #555;
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .flow-box {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #0f5c45;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      align-items: start;
+    }
+
+    .demo-card {
+      background: white;
+      padding: 22px;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .demo-card img {
       max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 5px 10px rgba(0,0,0,.2);
-      margin: 10px 0;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .tech-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      text-align: center;
+    }
+
+    .tech {
+      background: white;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+      font-weight: bold;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #0f5c45, #28a876);
+      color: white;
+      text-align: center;
+      border-radius: 30px;
+      margin: 50px 8%;
+      padding: 60px 20px;
+    }
+
+    .cta h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
     }
 
     footer {
-      background: #145c45;
+      background: #0f3d31;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 25px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .phone {
+        margin-top: 40px;
+      }
+
+      .grid,
+      .demo-grid,
+      .tech-list {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 8px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header id="home">
-  <h1>💰 BudgetBuddy AI</h1>
-  <p>Your AI-powered budgeting assistant for students.</p>
-  <p>Track expenses, receive personalised financial advice, and build better saving habits through Telegram.</p>
-
-  <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
-    🚀 Try BudgetBuddy AI on Telegram
-  </a>
-</header>
-
 <nav>
-  <a href="#home">Home</a>
-  <a href="#problem">Problem</a>
-  <a href="#solution">Solution</a>
-  <a href="#how">How It Works</a>
-  <a href="#features">Features</a>
-  <a href="#demo">Demo</a>
-  <a href="#audience">Audience</a>
-  <a href="#cta">Try Now</a>
+  <h2>💰 BudgetBuddy AI</h2>
+  <div>
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#how">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#demo">Demo</a>
+    <a href="#audience">Audience</a>
+  </div>
 </nav>
 
+<header class="hero">
+  <div class="hero-text">
+    <span class="badge">AI Budgeting Assistant for Students</span>
+    <h1>Track smarter. Spend better. Save more.</h1>
+    <p>
+      BudgetBuddy AI helps students record expenses, understand spending habits,
+      and receive personalised AI budgeting advice directly through Telegram.
+    </p>
+    <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
+      🚀 Try BudgetBuddy AI on Telegram
+    </a>
+  </div>
+
+  <div class="phone">
+    <div class="phone-screen">
+      <div class="chat">Hi! I am BudgetBuddy AI 👋</div>
+      <div class="chat user">EXPENSE | Food | Chicken rice | 5.00 | Lunch</div>
+      <div class="chat">
+        Spending Summary:<br>
+        Top Category: Food<br>
+        Risk Level: Medium<br>
+        Tip: Set a daily food limit.
+      </div>
+    </div>
+  </div>
+</header>
+
 <section id="problem">
-  <h2>Problem</h2>
-  <div class="card">
-    <p>
-      Many students struggle to track their spending and manage their allowance.
-      They may spend too much on food, transport, drinks, entertainment, or school supplies
-      without realising how quickly their money is used up.
-    </p>
-    <p>
-      Budgeting apps can also feel complicated, so students may stop using them after a short time.
-    </p>
+  <div class="section-title">
+    <h2>The Problem</h2>
+    <p>Students often lose track of where their allowance goes.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">💸</div>
+      <h3>Impulse Spending</h3>
+      <p>Students may spend too much on food, drinks, entertainment, and transport without realising it.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📉</div>
+      <h3>Poor Tracking Habits</h3>
+      <p>Many students do not record daily expenses, making it hard to understand spending patterns.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">😵</div>
+      <h3>Complicated Apps</h3>
+      <p>Traditional budgeting apps can feel too detailed or time-consuming for students to use consistently.</p>
+    </div>
   </div>
 </section>
 
 <section id="solution">
-  <h2>Solution</h2>
+  <div class="section-title">
+    <h2>Our Solution</h2>
+    <p>A simple Telegram budgeting bot powered by AI.</p>
+  </div>
+
   <div class="card">
     <p>
-      BudgetBuddy AI is a Telegram budgeting bot that allows students to record expenses quickly
-      through simple chat commands.
-    </p>
-    <p>
-      The bot connects Telegram, n8n, Google Sheets, and Gemini to generate personalised AI budgeting advice.
+      BudgetBuddy AI lets students record expenses using simple Telegram messages.
+      The system stores spending data in Google Sheets and uses Gemini AI to generate
+      personalised budgeting summaries, saving tips, and risk levels.
     </p>
   </div>
 </section>
 
 <section id="how">
-  <h2>How It Works</h2>
-  <div class="card">
-    <p class="flow">Profile → Expense Entry → Google Sheets → AI Summary</p>
-    <ol>
-      <li>User creates a profile with weekly budget and savings goal.</li>
-      <li>User records expenses through Telegram.</li>
-      <li>Google Sheets stores and organises the spending data.</li>
-      <li>Gemini generates a personalised budget summary.</li>
-      <li>The AI summary is sent back to the user on Telegram.</li>
-    </ol>
+  <div class="section-title">
+    <h2>How It Works</h2>
+    <p>The process is simple and student-friendly.</p>
+  </div>
+
+  <div class="flow-box">
+    Profile → Expense Entry → Google Sheets → AI Summary
   </div>
 </section>
 
 <section id="features">
-  <h2>Features</h2>
-  <div class="card">
-    <ul>
-      <li>Simple Telegram chatbot interface</li>
-      <li>Fast expense entry</li>
-      <li>Automatic date and time recording</li>
-      <li>Last 7 days spending summary</li>
-      <li>Personalised AI saving tips</li>
-      <li>Low, Medium, and High spending risk levels</li>
-      <li>Student-friendly financial advice</li>
-    </ul>
+  <div class="section-title">
+    <h2>Key Features</h2>
+    <p>Built to make budgeting fast, simple, and useful.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">💬</div>
+      <h3>Telegram Chatbot</h3>
+      <p>Students can use BudgetBuddy AI directly inside Telegram.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">⏱️</div>
+      <h3>Fast Expense Entry</h3>
+      <p>Record expenses using a short command format.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>AI Summary</h3>
+      <p>Gemini provides spending summaries, saving tips, and risk levels.</p>
+    </div>
   </div>
 </section>
 
 <section id="demo">
-  <h2>Screenshots / Demo</h2>
+  <div class="section-title">
+    <h2>Screenshots / Demo</h2>
+    <p>Examples of how users interact with the Telegram bot.</p>
+  </div>
 
-  <div class="card">
-    <h3>Start the Bot</h3>
-    <img src="start.png" alt="Start Command" width="220">
-    <p>
-      Users begin by typing <strong>/start</strong>.
-      The bot provides instructions on how to register and use BudgetBuddy AI.
-    </p>
+  <div class="demo-grid">
+    <div class="demo-card">
+      <h3>Start Bot</h3>
+      <img src="images/start.png" alt="Start Command">
+      <p>Users type <strong>/start</strong> to begin.</p>
+    </div>
 
-    <hr>
+    <div class="demo-card">
+      <h3>Record Expense</h3>
+      <img src="images/expense.png" alt="Expense Entry">
+      <p>Users record expenses using a simple format.</p>
+    </div>
 
-    <h3>Record an Expense</h3>
-    <img src="expense.png" alt="Expense Entry" width="350">
-    <p>
-      Users record expenses using a simple format:
-      <strong>EXPENSE | Category | Item | Amount | Notes</strong>.
-      The information is automatically stored in Google Sheets.
-    </p>
-
-    <hr>
-
-    <h3>Generate AI Summary</h3>
-    <img src="summary.png" alt="Summary Command" width="220">
-    <p>
-      Typing <strong>/summary</strong> generates a personalised AI budgeting report
-      based on the student's spending over the last 7 days.
-    </p>
+    <div class="demo-card">
+      <h3>AI Summary</h3>
+      <img src="images/summary.png" alt="Summary Command">
+      <p>Users type <strong>/summary</strong> to receive AI budgeting advice.</p>
+    </div>
   </div>
 </section>
 
 <section id="audience">
-  <h2>Target Audience</h2>
-  <div class="card">
-    <p>
-      BudgetBuddy AI is designed for full-time polytechnic and university students aged 17 to 25.
-    </p>
-    <p>
-      These students usually receive a weekly or monthly allowance and need a simple way to track
-      food, transport, entertainment, school supplies, and savings.
-    </p>
+  <div class="section-title">
+    <h2>Target Audience</h2>
+    <p>Designed for students who want a simpler way to manage money.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🎓</div>
+      <h3>Students aged 17–25</h3>
+      <p>Full-time polytechnic and university students.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💵</div>
+      <h3>Fixed Allowance</h3>
+      <p>Students who receive weekly or monthly allowance.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🥘</div>
+      <h3>Daily Spending</h3>
+      <p>Food, transport, entertainment, school supplies, and savings.</p>
+    </div>
   </div>
 </section>
 
-<section id="tech">
-  <h2>Technology Stack</h2>
-  <div class="card">
-    <ul>
-      <li>🤖 Telegram Bot – User interaction</li>
-      <li>⚙️ n8n – Workflow automation</li>
-      <li>📊 Google Sheets – Expense database</li>
-      <li>🧠 Google Gemini AI – Personalised budgeting advice</li>
-      <li>🔑 Google AI Studio – Gemini API and prompt testing</li>
-    </ul>
+<section>
+  <div class="section-title">
+    <h2>Technology Stack</h2>
+    <p>Tools used to build BudgetBuddy AI.</p>
+  </div>
+
+  <div class="tech-list">
+    <div class="tech">🤖 Telegram</div>
+    <div class="tech">⚙️ n8n</div>
+    <div class="tech">📊 Google Sheets</div>
+    <div class="tech">🧠 Gemini</div>
+    <div class="tech">🔑 Google AI Studio</div>
   </div>
 </section>
 
-<section id="cta">
-  <h2>Try BudgetBuddy AI</h2>
-  <div class="card">
-    <p>
-      Start tracking your expenses today and receive personalised AI budgeting advice directly on Telegram.
-    </p>
-
-    <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
-      Try BudgetBuddy AI on Telegram
-    </a>
-  </div>
-</section>
+<div class="cta">
+  <h2>Ready to budget smarter?</h2>
+  <p>Try BudgetBuddy AI now and start building better saving habits.</p>
+  <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
+    Try BudgetBuddy AI on Telegram
+  </a>
+</div>
 
 <footer>
   <p>BudgetBuddy AI | C240 AI Essentials & Innovations | Team Fizzy Dew</p>
