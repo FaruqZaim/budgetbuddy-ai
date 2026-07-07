@@ -14,7 +14,7 @@
       background: #1f7a5c;
       color: white;
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
     }
 
     nav {
@@ -65,15 +65,14 @@
       font-size: 20px;
       font-weight: bold;
       text-align: center;
+      color: #1f7a5c;
     }
 
-    .screenshot-box {
-      border: 2px dashed #aaa;
-      padding: 40px;
-      text-align: center;
-      background: #fff;
+    img {
+      max-width: 100%;
       border-radius: 12px;
-      color: #777;
+      box-shadow: 0 5px 10px rgba(0,0,0,.2);
+      margin: 10px 0;
     }
 
     footer {
@@ -88,14 +87,13 @@
 <body>
 
 <header id="home">
-    <h1>💰 BudgetBuddy AI</h1>
-    <p>Your AI-powered budgeting assistant for students.</p>
-    <p>Track expenses, receive personalised financial advice, and build better saving habits—all through Telegram.</p>
+  <h1>💰 BudgetBuddy AI</h1>
+  <p>Your AI-powered budgeting assistant for students.</p>
+  <p>Track expenses, receive personalised financial advice, and build better saving habits through Telegram.</p>
 
-    <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
-        🚀 Try BudgetBuddy AI on Telegram
-    </a>
-</header>
+  <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
+    🚀 Try BudgetBuddy AI on Telegram
+  </a>
 </header>
 
 <nav>
@@ -106,6 +104,7 @@
   <a href="#features">Features</a>
   <a href="#demo">Demo</a>
   <a href="#audience">Audience</a>
+  <a href="#cta">Try Now</a>
 </nav>
 
 <section id="problem">
@@ -158,7 +157,7 @@
       <li>Automatic date and time recording</li>
       <li>Last 7 days spending summary</li>
       <li>Personalised AI saving tips</li>
-      <li>Low, Medium, and High risk level</li>
+      <li>Low, Medium, and High spending risk levels</li>
       <li>Student-friendly financial advice</li>
     </ul>
   </div>
@@ -166,24 +165,33 @@
 
 <section id="demo">
   <h2>Screenshots / Demo</h2>
+
   <div class="card">
-    <p>Insert screenshots of your Telegram bot here.</p>
+    <h3>Start the Bot</h3>
+    <img src="start.png" alt="Start Command" width="220">
+    <p>
+      Users begin by typing <strong>/start</strong>.
+      The bot provides instructions on how to register and use BudgetBuddy AI.
+    </p>
 
-    <div class="screenshot-box">
-      Screenshot 1: Telegram /start message
-    </div>
+    <hr>
 
-    <br>
+    <h3>Record an Expense</h3>
+    <img src="expense.png" alt="Expense Entry" width="350">
+    <p>
+      Users record expenses using a simple format:
+      <strong>EXPENSE | Category | Item | Amount | Notes</strong>.
+      The information is automatically stored in Google Sheets.
+    </p>
 
-    <div class="screenshot-box">
-      Screenshot 2: Expense entry example
-    </div>
+    <hr>
 
-    <br>
-
-    <div class="screenshot-box">
-      Screenshot 3: AI budget summary
-    </div>
+    <h3>Generate AI Summary</h3>
+    <img src="summary.png" alt="Summary Command" width="220">
+    <p>
+      Typing <strong>/summary</strong> generates a personalised AI budgeting report
+      based on the student's spending over the last 7 days.
+    </p>
   </div>
 </section>
 
@@ -200,13 +208,29 @@
   </div>
 </section>
 
+<section id="tech">
+  <h2>Technology Stack</h2>
+  <div class="card">
+    <ul>
+      <li>🤖 Telegram Bot – User interaction</li>
+      <li>⚙️ n8n – Workflow automation</li>
+      <li>📊 Google Sheets – Expense database</li>
+      <li>🧠 Google Gemini AI – Personalised budgeting advice</li>
+      <li>🔑 Google AI Studio – Gemini API and prompt testing</li>
+    </ul>
+  </div>
+</section>
+
 <section id="cta">
   <h2>Try BudgetBuddy AI</h2>
   <div class="card">
     <p>
       Start tracking your expenses today and receive personalised AI budgeting advice directly on Telegram.
     </p>
-    <a class="button" href="#">Try BudgetBuddy AI on Telegram</a>
+
+    <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
+      Try BudgetBuddy AI on Telegram
+    </a>
   </div>
 </section>
 
