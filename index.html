@@ -1,474 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BudgetBuddy AI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f6fff9;
-      color: #1d1d1d;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(15, 85, 63, 0.95);
-      backdrop-filter: blur(8px);
-      padding: 16px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav h2 {
-      color: white;
-      margin: 0;
-      font-size: 22px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 70px 8%;
-      background: linear-gradient(135deg, #0f5c45, #28a876);
-      color: white;
-    }
-
-    .hero-text {
-      max-width: 560px;
-    }
-
-    .hero h1 {
-      font-size: 58px;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 20px;
-      line-height: 1.6;
-    }
-
-    .badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.18);
-      padding: 8px 14px;
-      border-radius: 50px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .button {
-      display: inline-block;
-      background: #ffd166;
-      color: #1d1d1d;
-      padding: 15px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-    }
-
-    .phone {
-      background: #111;
-      width: 280px;
-      height: 520px;
-      border-radius: 35px;
-      padding: 18px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.35);
-    }
-
-    .phone-screen {
-      background: #e8f5ef;
-      height: 100%;
-      border-radius: 25px;
-      padding: 18px;
-      color: #222;
-    }
-
-    .chat {
-      background: white;
-      padding: 12px;
-      border-radius: 14px;
-      margin: 12px 0;
-      font-size: 14px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    }
-
-    .chat.user {
-      background: #d1fae5;
-      margin-left: 30px;
-    }
-
-    section {
-      padding: 70px 8%;
-    }
-
-    .section-title {
-      text-align: center;
-      max-width: 750px;
-      margin: auto;
-      margin-bottom: 40px;
-    }
-
-    .section-title h2 {
-      font-size: 38px;
-      color: #0f5c45;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #555;
-      font-size: 18px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .card {
-      background: white;
-      padding: 28px;
-      border-radius: 22px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-    }
-
-    .icon {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .flow-box {
-      background: white;
-      padding: 30px;
-      border-radius: 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      color: #0f5c45;
-    }
-
-    .demo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-      align-items: start;
-    }
-
-    .demo-card {
-      background: white;
-      padding: 22px;
-      border-radius: 22px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .demo-card img {
-      max-width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
-
-    .tech-list {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-      text-align: center;
-    }
-
-    .tech {
-      background: white;
-      padding: 24px;
-      border-radius: 20px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-      font-weight: bold;
-    }
-
-    .cta {
-      background: linear-gradient(135deg, #0f5c45, #28a876);
-      color: white;
-      text-align: center;
-      border-radius: 30px;
-      margin: 50px 8%;
-      padding: 60px 20px;
-    }
-
-    .cta h2 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      background: #0f3d31;
-      color: white;
-      text-align: center;
-      padding: 25px;
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      .phone {
-        margin-top: 40px;
-      }
-
-      .grid,
-      .demo-grid,
-      .tech-list {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        flex-direction: column;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 8px;
-      }
-    }
+    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+    body{font-family:Arial,sans-serif;background:#f5fff9;color:#1b1b1b;line-height:1.6}
+    nav{position:sticky;top:0;z-index:1000;background:rgba(10,61,48,.96);display:flex;justify-content:space-between;align-items:center;padding:18px 8%;color:white;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+    nav h2{font-size:24px} nav a{color:white;text-decoration:none;margin-left:18px;font-weight:bold;font-size:14px} nav a:hover{color:#ffd166}
+    .hero{min-height:90vh;background:radial-gradient(circle at top right,#37d58d,transparent 35%),linear-gradient(135deg,#092e25,#17a76b);color:white;display:flex;align-items:center;justify-content:space-between;padding:70px 8%;gap:45px;overflow:hidden}
+    .hero-text{max-width:620px}.badge{background:rgba(255,255,255,.18);padding:10px 16px;border-radius:50px;display:inline-block;margin-bottom:20px;font-weight:bold;border:1px solid rgba(255,255,255,.25)}
+    .hero h1{font-size:62px;line-height:1.05;margin-bottom:20px}.hero p{font-size:20px;color:#ecfff5}.btn{display:inline-block;margin-top:25px;background:#ffd166;color:#111;padding:15px 25px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 10px 25px rgba(0,0,0,.25);transition:.25s}.btn:hover{transform:translateY(-4px)}
+    .phone{width:310px;height:570px;background:#111;border-radius:38px;padding:18px;box-shadow:0 30px 70px rgba(0,0,0,.45);animation:float 4s ease-in-out infinite}.screen{height:100%;background:#e9f8f1;border-radius:28px;padding:18px;color:#111;overflow:hidden}.chat{background:white;padding:12px;border-radius:15px;margin:12px 0;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,.1)}.user{background:#c8f7dc;margin-left:38px}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    section{padding:75px 8%}.title{text-align:center;max-width:760px;margin:auto auto 45px}.title h2{font-size:42px;color:#0a3d30;margin-bottom:12px}.title p{color:#555;font-size:18px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.card{background:white;padding:30px;border-radius:24px;box-shadow:0 12px 30px rgba(0,0,0,.08);transition:.3s;border:1px solid #e6f4ec}.card:hover{transform:translateY(-8px);box-shadow:0 18px 45px rgba(0,0,0,.12)}.icon{font-size:42px;margin-bottom:12px}.flow{background:white;padding:35px;border-radius:25px;text-align:center;font-size:26px;font-weight:bold;color:#0a3d30;box-shadow:0 12px 30px rgba(0,0,0,.08)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:25px}.step{background:#fff;padding:22px;border-radius:20px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.07)}.step span{display:inline-flex;width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;background:#17a76b;color:white;font-weight:bold;margin-bottom:10px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.stat{background:linear-gradient(135deg,#fff,#eafff3);padding:25px;border-radius:22px;text-align:center;box-shadow:0 8px 22px rgba(0,0,0,.07)}.stat h3{font-size:32px;color:#0a3d30}.tech{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;text-align:center}.tech div{background:white;padding:25px;border-radius:20px;font-weight:bold;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+    .faq{max-width:900px;margin:auto}.faq-item{background:white;margin-bottom:14px;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.06);overflow:hidden}.faq-q{padding:18px 22px;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between}.faq-a{display:none;padding:0 22px 20px;color:#555}.faq-item.active .faq-a{display:block}.cta{background:linear-gradient(135deg,#0a3d30,#17a76b);color:white;text-align:center;margin:50px 8%;padding:70px 25px;border-radius:35px}.cta h2{font-size:42px;margin-bottom:15px}footer{background:#092e25;color:white;text-align:center;padding:25px}
+    .chatbot-btn{position:fixed;right:25px;bottom:25px;width:68px;height:68px;border-radius:50%;border:none;background:#17a76b;color:white;font-size:31px;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.3);z-index:2000}.chatbot-btn:hover{transform:scale(1.06)}.chatbot-box{position:fixed;right:25px;bottom:105px;width:360px;height:500px;background:white;border-radius:24px;box-shadow:0 20px 55px rgba(0,0,0,.28);display:none;flex-direction:column;overflow:hidden;z-index:2000}.chatbot-header{background:#0a3d30;color:white;padding:18px;font-weight:bold}.chatbot-messages{flex:1;padding:15px;overflow-y:auto;background:#f4fff8}.bot-msg,.user-msg{padding:11px 14px;border-radius:14px;margin-bottom:10px;font-size:14px;line-height:1.45}.bot-msg{background:white;border:1px solid #e8eee9}.user-msg{background:#c8f7dc;margin-left:45px}.quick{display:flex;gap:6px;flex-wrap:wrap;padding:10px;background:#f4fff8}.quick button{border:none;background:#e1f7eb;padding:8px 10px;border-radius:20px;cursor:pointer;font-size:12px}.chatbot-input{display:flex;border-top:1px solid #ddd}.chatbot-input input{flex:1;border:none;padding:14px;outline:none}.chatbot-input button{border:none;background:#17a76b;color:white;padding:14px;cursor:pointer;font-weight:bold}
+    @media(max-width:900px){nav{flex-direction:column;text-align:center}nav a{display:inline-block;margin:8px}.hero{flex-direction:column;text-align:center}.hero h1{font-size:42px}.grid,.tech,.stats,.steps{grid-template-columns:1fr}.chatbot-box{width:90%;right:5%}.phone{width:280px;height:520px}}
   </style>
 </head>
-
 <body>
-
-<nav>
-  <h2>💰 BudgetBuddy AI</h2>
-  <div>
-    <a href="#problem">Problem</a>
-    <a href="#solution">Solution</a>
-    <a href="#how">How It Works</a>
-    <a href="#features">Features</a>
-    <a href="#demo">Demo</a>
-    <a href="#audience">Audience</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="hero-text">
-    <span class="badge">AI Budgeting Assistant for Students</span>
-    <h1>Track smarter. Spend better. Save more.</h1>
-    <p>
-      BudgetBuddy AI helps students record expenses, understand spending habits,
-      and receive personalised AI budgeting advice directly through Telegram.
-    </p>
-    <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
-      🚀 Try BudgetBuddy AI on Telegram
-    </a>
-  </div>
-
-  <div class="phone">
-    <div class="phone-screen">
-      <div class="chat">Hi! I am BudgetBuddy AI 👋</div>
-      <div class="chat user">EXPENSE | Food | Chicken rice | 5.00 | Lunch</div>
-      <div class="chat">
-        Spending Summary:<br>
-        Top Category: Food<br>
-        Risk Level: Medium<br>
-        Tip: Set a daily food limit.
-      </div>
-    </div>
-  </div>
-</header>
-
-<section id="problem">
-  <div class="section-title">
-    <h2>The Problem</h2>
-    <p>Students often lose track of where their allowance goes.</p>
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="icon">💸</div>
-      <h3>Impulse Spending</h3>
-      <p>Students may spend too much on food, drinks, entertainment, and transport without realising it.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📉</div>
-      <h3>Poor Tracking Habits</h3>
-      <p>Many students do not record daily expenses, making it hard to understand spending patterns.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">😵</div>
-      <h3>Complicated Apps</h3>
-      <p>Traditional budgeting apps can feel too detailed or time-consuming for students to use consistently.</p>
-    </div>
-  </div>
-</section>
-
-<section id="solution">
-  <div class="section-title">
-    <h2>Our Solution</h2>
-    <p>A simple Telegram budgeting bot powered by AI.</p>
-  </div>
-
-  <div class="card">
-    <p>
-      BudgetBuddy AI lets students record expenses using simple Telegram messages.
-      The system stores spending data in Google Sheets and uses Gemini AI to generate
-      personalised budgeting summaries, saving tips, and risk levels.
-    </p>
-  </div>
-</section>
-
-<section id="how">
-  <div class="section-title">
-    <h2>How It Works</h2>
-    <p>The process is simple and student-friendly.</p>
-  </div>
-
-  <div class="flow-box">
-    Profile → Expense Entry → Google Sheets → AI Summary
-  </div>
-</section>
-
-<section id="features">
-  <div class="section-title">
-    <h2>Key Features</h2>
-    <p>Built to make budgeting fast, simple, and useful.</p>
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="icon">💬</div>
-      <h3>Telegram Chatbot</h3>
-      <p>Students can use BudgetBuddy AI directly inside Telegram.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">⏱️</div>
-      <h3>Fast Expense Entry</h3>
-      <p>Record expenses using a short command format.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📊</div>
-      <h3>AI Summary</h3>
-      <p>Gemini provides spending summaries, saving tips, and risk levels.</p>
-    </div>
-  </div>
-</section>
-
-<section id="demo">
-  <div class="section-title">
-    <h2>Screenshots / Demo</h2>
-    <p>Examples of how users interact with the Telegram bot.</p>
-  </div>
-
-  <div class="demo-grid">
-    <div class="demo-card">
-      <h3>Start Bot</h3>
-      <img src="images/start.png" alt="Start Command">
-      <p>Users type <strong>/start</strong> to begin.</p>
-    </div>
-
-    <div class="demo-card">
-      <h3>Record Expense</h3>
-      <img src="images/expense.png" alt="Expense Entry">
-      <p>Users record expenses using a simple format.</p>
-    </div>
-
-    <div class="demo-card">
-      <h3>AI Summary</h3>
-      <img src="images/summary.png" alt="Summary Command">
-      <p>Users type <strong>/summary</strong> to receive AI budgeting advice.</p>
-    </div>
-  </div>
-</section>
-
-<section id="audience">
-  <div class="section-title">
-    <h2>Target Audience</h2>
-    <p>Designed for students who want a simpler way to manage money.</p>
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="icon">🎓</div>
-      <h3>Students aged 17–25</h3>
-      <p>Full-time polytechnic and university students.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">💵</div>
-      <h3>Fixed Allowance</h3>
-      <p>Students who receive weekly or monthly allowance.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🥘</div>
-      <h3>Daily Spending</h3>
-      <p>Food, transport, entertainment, school supplies, and savings.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="section-title">
-    <h2>Technology Stack</h2>
-    <p>Tools used to build BudgetBuddy AI.</p>
-  </div>
-
-  <div class="tech-list">
-    <div class="tech">🤖 Telegram</div>
-    <div class="tech">⚙️ n8n</div>
-    <div class="tech">📊 Google Sheets</div>
-    <div class="tech">🧠 Gemini</div>
-    <div class="tech">🔑 Google AI Studio</div>
-  </div>
-</section>
-
-<div class="cta">
-  <h2>Ready to budget smarter?</h2>
-  <p>Try BudgetBuddy AI now and start building better saving habits.</p>
-  <a class="button" href="https://t.me/budgetbuddy_student_bot" target="_blank">
-    Try BudgetBuddy AI on Telegram
-  </a>
-</div>
-
-<footer>
-  <p>BudgetBuddy AI | C240 AI Essentials & Innovations | Team Fizzy Dew</p>
-</footer>
-
+<nav><h2>💰 BudgetBuddy AI</h2><div><a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#how">How It Works</a><a href="#features">Features</a><a href="#audience">Audience</a><a href="#tech">Tools</a></div></nav>
+<header class="hero"><div class="hero-text"><span class="badge">AI Budgeting Assistant for Students</span><h1>Track smarter. Spend better. Save more.</h1><p>BudgetBuddy AI helps students record expenses, understand spending habits, and receive personalised AI budgeting advice directly through Telegram.</p><a class="btn" href="https://t.me/budgetbuddy_student_bot" target="_blank">🚀 Try BudgetBuddy AI on Telegram</a></div><div class="phone"><div class="screen"><div class="chat">Hi! I am BudgetBuddy AI 👋</div><div class="chat user">EXPENSE | Food | Chicken rice | 5.00 | Lunch</div><div class="chat">Expense saved ✅</div><div class="chat user">/summary</div><div class="chat">Spending Summary:<br>Top Category: Food<br>Risk Level: Medium<br>Tip: Set a daily food limit.</div></div></div></header>
+<section><div class="stats"><div class="stat"><h3>24/7</h3><p>Telegram access</p></div><div class="stat"><h3>7 Days</h3><p>Spending summary</p></div><div class="stat"><h3>3</h3><p>Risk levels</p></div><div class="stat"><h3>AI</h3><p>Saving advice</p></div></div></section>
+<section id="problem"><div class="title"><h2>The Problem</h2><p>Students often struggle to track spending and manage allowance.</p></div><div class="grid"><div class="card"><div class="icon">💸</div><h3>Impulse Spending</h3><p>Students may overspend on food, drinks, entertainment, and transport without noticing.</p></div><div class="card"><div class="icon">📉</div><h3>Poor Tracking</h3><p>Many students do not record daily expenses, so they do not know where their money goes.</p></div><div class="card"><div class="icon">😵</div><h3>Complicated Apps</h3><p>Budgeting apps can feel too complex, causing students to stop using them.</p></div></div></section>
+<section id="solution"><div class="title"><h2>Our Solution</h2><p>A simple Telegram budgeting bot powered by Gemini AI.</p></div><div class="card"><p>BudgetBuddy AI allows students to register their profile, enter expenses, and request an AI budgeting summary through Telegram. The system uses n8n to connect Telegram, Google Sheets, and Gemini together.</p></div></section>
+<section id="how"><div class="title"><h2>How It Works</h2><p>The process is simple and easy for students.</p></div><div class="flow">Profile → Expense Entry → Google Sheets → AI Summary</div><div class="steps"><div class="step"><span>1</span><h3>Create Profile</h3><p>Set weekly budget and savings goal.</p></div><div class="step"><span>2</span><h3>Enter Expense</h3><p>Use a short Telegram command.</p></div><div class="step"><span>3</span><h3>Store Data</h3><p>Google Sheets organises records.</p></div><div class="step"><span>4</span><h3>Get Advice</h3><p>Gemini gives a budget summary.</p></div></div></section>
+<section id="features"><div class="title"><h2>Key Features</h2><p>Designed to make budgeting fast, simple, and useful.</p></div><div class="grid"><div class="card"><div class="icon">💬</div><h3>Telegram Bot</h3><p>Students can access the budgeting assistant directly through Telegram.</p></div><div class="card"><div class="icon">📊</div><h3>AI Summary</h3><p>Gemini generates personalised spending summaries and saving tips.</p></div><div class="card"><div class="icon">⚠️</div><h3>Risk Level</h3><p>The system classifies spending risk as Low, Medium, or High.</p></div></div></section>
+<section id="audience"><div class="title"><h2>Target Audience</h2><p>BudgetBuddy AI is built for students who want better money habits.</p></div><div class="grid"><div class="card"><div class="icon">🎓</div><h3>Students aged 17–25</h3><p>Full-time polytechnic and university students.</p></div><div class="card"><div class="icon">💵</div><h3>Fixed Allowance</h3><p>Students who receive weekly or monthly allowance.</p></div><div class="card"><div class="icon">🥘</div><h3>Daily Expenses</h3><p>Food, transport, entertainment, school supplies, and savings.</p></div></div></section>
+<section id="tech"><div class="title"><h2>Technology Stack</h2><p>Tools used to build BudgetBuddy AI.</p></div><div class="tech"><div>🤖 Telegram</div><div>⚙️ n8n</div><div>📊 Google Sheets</div><div>🧠 Gemini</div><div>🔑 Google AI Studio</div></div></section>
+<section><div class="title"><h2>FAQ</h2><p>Common questions about BudgetBuddy AI.</p></div><div class="faq"><div class="faq-item"><div class="faq-q">How do I start? <span>+</span></div><div class="faq-a">Open the Telegram bot and type <b>/start</b>.</div></div><div class="faq-item"><div class="faq-q">How do I record an expense? <span>+</span></div><div class="faq-a">Use: <b>EXPENSE | Category | Item | Amount | Notes</b></div></div><div class="faq-item"><div class="faq-q">How do I get AI advice? <span>+</span></div><div class="faq-a">Type <b>/summary</b> in Telegram to receive your AI budgeting summary.</div></div><div class="faq-item"><div class="faq-q">What can the website chatbot help with? <span>+</span></div><div class="faq-a">It can answer budgeting questions, Telegram bot issues, website issues, feedback, and complaints.</div></div></div></section>
+<div class="cta"><h2>Ready to budget smarter?</h2><p>Try BudgetBuddy AI now and start building better saving habits.</p><a class="btn" href="https://t.me/budgetbuddy_student_bot" target="_blank">Try BudgetBuddy AI on Telegram</a></div>
+<footer><p>BudgetBuddy AI | C240 AI Essentials & Innovations | Team Fizzy Dew</p></footer>
+<button class="chatbot-btn" onclick="toggleChat()">💬</button><div class="chatbot-box" id="chatbot"><div class="chatbot-header">💰 BudgetBuddy AI Assistant</div><div class="chatbot-messages" id="messages"><div class="bot-msg">Hi! I can help with budgeting questions, Telegram bot issues, website problems, feedback, and complaints.</div></div><div class="quick"><button onclick="quickAsk('How do I record an expense?')">Record expense</button><button onclick="quickAsk('How do I save money?')">Saving tips</button><button onclick="quickAsk('Bot not working')">Bot issue</button></div><div class="chatbot-input"><input type="text" id="userInput" placeholder="Ask me anything..." onkeydown="handleEnter(event)"><button onclick="sendMessage()">Send</button></div></div>
+<script>
+function toggleChat(){const box=document.getElementById('chatbot');box.style.display=box.style.display==='flex'?'none':'flex'}
+function handleEnter(e){if(e.key==='Enter')sendMessage()}function quickAsk(t){document.getElementById('userInput').value=t;sendMessage()}
+function sendMessage(){const input=document.getElementById('userInput');const message=input.value.trim();if(!message)return;addMessage(message,'user-msg');input.value='';setTimeout(()=>addMessage(getBotReply(message),'bot-msg'),400)}
+function addMessage(text,cls){const messages=document.getElementById('messages');const div=document.createElement('div');div.className=cls;div.innerHTML=text;messages.appendChild(div);messages.scrollTop=messages.scrollHeight}
+function getBotReply(message){const msg=message.toLowerCase();
+if(msg.includes('expense')||msg.includes('record')||msg.includes('spend'))return 'To record an expense, use this format in Telegram:<br><br><b>EXPENSE | Category | Item | Amount | Notes</b><br><br>Example:<br><b>EXPENSE | Food | Chicken rice | 5.00 | Lunch</b>';
+if(msg.includes('profile')||msg.includes('register'))return 'To create your profile, send:<br><br><b>PROFILE | Your Name | Weekly Budget | Savings Goal</b><br><br>Example:<br><b>PROFILE | Faruq | 125 | 80</b>';
+if(msg.includes('summary')||msg.includes('advice'))return 'Type <b>/summary</b> in the Telegram bot. BudgetBuddy AI will review your recent spending and give personalised saving tips.';
+if(msg.includes('telegram')||msg.includes('bot')||msg.includes('not working')||msg.includes('not responding'))return 'If the Telegram bot is not responding:<br>1. Start with <b>/start</b>.<br>2. Check your message format.<br>3. Try again after a few seconds.<br>4. Open: <a href="https://t.me/budgetbuddy_student_bot" target="_blank">@budgetbuddy_student_bot</a>';
+if(msg.includes('budget')||msg.includes('save')||msg.includes('saving')||msg.includes('money'))return 'A simple student budgeting tip: split your allowance into food, transport, school needs, entertainment, and savings. Save first before spending.';
+if(msg.includes('risk')||msg.includes('low')||msg.includes('medium')||msg.includes('high'))return '<b>Low:</b> spending is under control.<br><b>Medium:</b> spending is close to the budget.<br><b>High:</b> spending is near or above the weekly budget.';
+if(msg.includes('website')||msg.includes('page')||msg.includes('link')||msg.includes('github'))return 'For website issues, refresh the page, check your GitHub Pages link, and make sure your file is named <b>index.html</b>.';
+if(msg.includes('complain')||msg.includes('complaint')||msg.includes('feedback')||msg.includes('bug'))return 'Thank you for your feedback. You can report unclear advice, bot errors, website problems, or suggestions to the BudgetBuddy AI team.';
+if(msg.includes('hello')||msg.includes('hi'))return 'Hi! Ask me about budgeting, saving money, Telegram bot commands, website issues, or feedback.';
+return 'I can help with student budgeting, saving tips, expense tracking, Telegram bot commands, website issues, feedback, and complaints. Try asking: <b>How do I record an expense?</b>'}
+document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('active')));
+</script>
 </body>
 </html>
