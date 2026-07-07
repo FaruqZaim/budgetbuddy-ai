@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BudgetBuddy AI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f8f6;
+      color: #222;
+    }
+
+    header {
+      background-color: #1f7a5c;
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #145c45;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #1f7a5c;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #1f7a5c;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    footer {
+      background-color: #145c45;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #1f7a5c;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>BudgetBuddy AI</h1>
+  <p>Track smarter, spend better, save more.</p>
+  <a class="button" href="#how">See How It Works</a>
+</header>
+
+<nav>
+  <a href="#problem">Problem</a>
+  <a href="#solution">Solution</a>
+  <a href="#how">How It Works</a>
+  <a href="#features">Features</a>
+  <a href="#tools">Tools</a>
+  <a href="#team">Team</a>
+</nav>
+
+<section id="problem">
+  <h2>Problem</h2>
+  <div class="card">
+    <p>
+      Many students struggle to manage their allowance and daily expenses.
+      Common problems include impulse spending, poor tracking habits, and limited financial knowledge.
+      As a result, students may run out of money before the end of the month.
+    </p>
+  </div>
+</section>
+
+<section id="solution">
+  <h2>Our Solution</h2>
+  <div class="card">
+    <p>
+      BudgetBuddy AI is a Telegram-based AI budgeting assistant that helps students record expenses,
+      understand their spending patterns, and receive personalised saving advice.
+    </p>
+  </div>
+</section>
+
+<section id="how">
+  <h2>How It Works</h2>
+  <div class="card">
+    <p><strong>Telegram → n8n → Google Sheets → Gemini → Telegram</strong></p>
+    <p>Students can use simple commands:</p>
+    <ul>
+      <li><strong>/start</strong> - Start the chatbot</li>
+      <li><strong>PROFILE | Name | Weekly Budget | Savings Goal</strong></li>
+      <li><strong>EXPENSE | Category | Item | Amount | Notes</strong></li>
+      <li><strong>/summary</strong> - Get AI budgeting advice</li>
+    </ul>
+  </div>
+</section>
+
+<section id="features">
+  <h2>Features</h2>
+  <div class="card">
+    <ul>
+      <li>Easy Telegram chatbot interface</li>
+      <li>Fast expense recording</li>
+      <li>Automatic date and time tracking</li>
+      <li>Last 7 days spending summary</li>
+      <li>Personalised AI saving tips</li>
+      <li>Low, Medium, and High spending risk levels</li>
+    </ul>
+  </div>
+</section>
+
+<section id="tools">
+  <h2>Tools Used</h2>
+  <table>
+    <tr>
+      <th>Tool</th>
+      <th>Purpose</th>
+    </tr>
+    <tr>
+      <td>Telegram</td>
+      <td>Chatbot interface</td>
+    </tr>
+    <tr>
+      <td>n8n</td>
+      <td>Automation workflow</td>
+    </tr>
+    <tr>
+      <td>Google Sheets</td>
+      <td>Stores user and expense data</td>
+    </tr>
+    <tr>
+      <td>Gemini</td>
+      <td>Generates personalised budgeting advice</td>
+    </tr>
+    <tr>
+      <td>Google AI Studio</td>
+      <td>Prompt testing</td>
+    </tr>
+  </table>
+</section>
+
+<section id="team">
+  <h2>Team Fizzy Dew</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+    </tr>
+    <tr>
+      <td>Muhammad Faruq Zaim</td>
+      <td>Team captain, project planning, chatbot development</td>
+    </tr>
+    <tr>
+      <td>ROMOND</td>
+      <td>Research, prompt development, testing</td>
+    </tr>
+    <tr>
+      <td>KAEDEN</td>
+      <td>UI design and visual content</td>
+    </tr>
+    <tr>
+      <td>Achilles</td>
+      <td>Documentation, slides, quality checking</td>
+    </tr>
+  </table>
+</section>
+
+<footer>
+  <p>BudgetBuddy AI © 2026 | C240 AI Essentials & Innovations</p>
+</footer>
+
+</body>
+</html>
